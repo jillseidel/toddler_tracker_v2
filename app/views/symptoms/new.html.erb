@@ -1,0 +1,102 @@
+<!-- Validation failure messages -->
+<% if @symptom.errors.any? %>
+<% @symptom.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+<div class="page-header">
+  <% child = Child.find_by(:id => cookies[:child_id]) %>
+  <h3>Add a new symptom for <%= child.name %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_symptom" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Input for child_id -->
+      <div class="form-group">
+        <input type="hidden" id="child_id" name="child_id" value="<%= child.id %>" class="form-control" >
+      </div>
+
+      <!-- Label and input for date -->
+      <div class="form-group">
+        <label for="date" class="control-label">
+          Date
+        </label>
+      </div>
+
+      <div class='input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" name="date" id="date" value="<%= @symptom.date %>">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+
+
+
+      <!-- Label and input for none -->
+      <div class="checkbox">
+        <label for="none">
+          <input type="checkbox" id="none" name="none" value="1" <%= "checked" if @symptom.none %>>
+          None
+        </label>
+      </div>
+
+
+
+
+      <!-- Label and input for diahrrea -->
+      <div class="checkbox">
+        <label for="diahrrea">
+          <input type="checkbox" id="diahrrea" name="diahrrea" value="1" <%= "checked" if @symptom.diahrrea %>>
+          Diahrrea
+        </label>
+      </div>
+
+      <!-- Label and input for fever -->
+      <div class="checkbox">
+        <label for="fever">
+          <input type="checkbox" id="fever" name="fever" value="1" <%= "checked" if @symptom.fever %>>
+          Fever
+        </label>
+      </div>
+
+      <!-- Label and input for cough -->
+      <div class="checkbox">
+        <label for="cough">
+          <input type="checkbox" id="cough" name="cough" value="1" <%= "checked" if @symptom.cough %>>
+          Cough
+        </label>
+      </div>
+
+      <!-- Label and input for other -->
+      <div class="form-group">
+        <label for="other" class="control-label">
+          Other
+        </label>
+
+        <input type="text" id="other" name="other" placeholder="Other" class="form-control" value="<%= @symptom.other %>">
+      </div>
+
+
+
+      <button class="btn btn-success">
+        Add Symptom
+      </button>
+      or
+      <a href="/symptoms">Cancel</a>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+  $('#datetimepicker1').datetimepicker();
+});
+</script>

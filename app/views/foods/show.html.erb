@@ -1,0 +1,42 @@
+<div class="page-header">
+  <% child = Child.find_by(:id => cookies[:child_id]) %>
+  <h3><%= child.name %>'s Daily Nutrition for <%= @food.date.strftime('%b %e, %Y') %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+
+      <dt>Fat</dt>
+      <dd><%= @food.fat %></dd>
+
+      <dt>Dairy</dt>
+      <dd><%= @food.dairy %></dd>
+
+      <dt>Protein</dt>
+      <dd><%= @food.protein %></dd>
+
+      <dt>Vegetable</dt>
+      <dd><%= @food.vegetable %></dd>
+
+      <dt>Fruit</dt>
+      <dd><%= @food.fruit %></dd>
+
+      <dt>Grain</dt>
+      <dd><%= @food.grain %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/foods" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/foods/<%= @food.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_food/<%= @food.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

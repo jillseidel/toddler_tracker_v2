@@ -1,0 +1,100 @@
+<!-- Validation failure messages -->
+<% if @sleep.errors.any? %>
+<% @sleep.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+
+<div class="page-header">
+  <% child = Child.find_by(:id => cookies[:child_id]) %>
+  <h3>Update <%= child.name %>'s Sleep Entry for <%= @sleep.date.strftime('%b %e, %Y') %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_sleep/<%= @sleep.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Input for child_id -->
+      <div class="form-group">
+        <input type="hidden" id="child_id" name="child_id" value="<%= child.id %>" class="form-control" >
+      </div>
+
+      <!-- Label and input for date -->
+      <div class="form-group">
+        <label for="date" class="control-label">
+          Date
+        </label>
+      </div>
+
+      <div class='input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" name="date" id="date" value="<%= @sleep.date %>">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+
+
+
+      <!-- Label and input for day_sleep -->
+      <div class="form-group">
+        <label for="day_sleep" class="control-label" >
+          Hours of daytime sleep
+        </label>
+
+        <%= select_tag "day_sleep", options_for_select(["0", "0.5", "1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5", ">5"],@sleep.day_sleep) %>
+
+
+      </div>
+
+      <!-- Label and input for naps -->
+      <div class="form-group">
+        <label for="naps" class="control-label">
+          Number of Naps
+        </label>
+
+        <%= select_tag "naps", options_for_select(["0", "1", "2", "3", "4", "5", ">5"],@sleep.naps) %>
+
+        <!-- Label and input for night_sleep -->
+        <div class="form-group">
+          <label for="night_sleep" class="control-label">
+            Hours of nighttime sleep
+          </label>
+
+          <%= select_tag "night_sleep", options_for_select(["5","5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13" ],"Nighttime Sleep") %>
+
+
+        </div>
+
+        <!-- Label and input for wake_ups -->
+        <div class="form-group">
+          <label for="wake_ups" class="control-label">
+            Number of Wake ups
+          </label>
+
+          <%= select_tag "wake_ups", options_for_select(["0", "1", "2", "3", "4", "5", ">5"],@sleep.wake_ups) %>
+
+          <div>
+            <button class="btn btn-success">
+              Update Sleep Entry
+            </button>
+            or
+            <a href="/sleeps">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+     <script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker(
+      defaultDate: "<%= @sleep.date %>"
+    );
+  });
+</script>

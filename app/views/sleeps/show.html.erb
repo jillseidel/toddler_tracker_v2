@@ -1,0 +1,36 @@
+<div class="page-header">
+  <% child = Child.find_by(:id => cookies[:child_id]) %>
+  <h3><%= child.name %>'s Sleep Entry for <%= @sleep.date.strftime('%b %e, %Y') %></h3>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Naps</dt>
+      <dd><%= @sleep.naps %></dd>
+
+      <dt>Wake ups</dt>
+      <dd><%= @sleep.wake_ups %></dd>
+
+      <dt>Day sleep</dt>
+      <dd><%= @sleep.day_sleep %></dd>
+
+      <dt>Night sleep</dt>
+      <dd><%= @sleep.night_sleep %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/sleeps" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/sleeps/<%= @sleep.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_sleep/<%= @sleep.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

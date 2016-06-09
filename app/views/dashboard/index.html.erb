@@ -1,0 +1,50 @@
+<div class="page-header">
+  <% child = Child.find_by(:id => cookies[:child_id]) %>
+  <h1>
+    <%= child.name %>'s Dashboard
+  </h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <!-- Box for Nutrition summary -->
+    <div class="col-md-6">
+      <h3>Nutrition</h3>
+      <%= pie_chart Food.group(:fat).count %>
+      <%#= pie_chart {4=>3, 1=>2, 3=>4} %>
+      <%= Food.group(:fat).count %>
+    </div>
+
+    <!-- Box for Vocabulary summary -->
+    <div class="col-md-6">
+      <h3>Vocabulary</h3>
+      <dt>Number of words</dt>
+      <dd><%= child.words.count %></dd>
+      <%= line_chart Word.group(:created_at).count %>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Box for Wellness summary -->
+    <div class="col-md-6">
+      <h3>Wellness</h3>
+
+    </div>
+
+    <!-- Box for Sleep summary -->
+    <div class="col-md-6">
+      <h3> <a href="/sleeps">Sleep</h3>
+        <div class="col-md-5">
+          <h5>Nighttime Sleep</h5>
+          <%= pie_chart Sleep.group(:night_sleep).count %>
+        </div>
+        <div class="col-md-5">
+          <h5>Daytime Sleep</h5>
+          <%= pie_chart Sleep.group(:day_sleep).count %>
+        </div>
+
+      </a>
+    </div>
+  </div>
+</div>

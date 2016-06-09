@@ -1,0 +1,53 @@
+<div class="page-header">
+  <% child = Child.find_by(:id => cookies[:child_id]) %>
+  <h1>
+    <%= child.name %>'s Wellness
+  </h1>
+  <a href="/symptoms/new" class="btn btn-lg btn-success">New Wellness Entry</a>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Date</th>
+        <th>Fever</th>
+        <th>Cough</th>
+        <th>Diahrrea</th>
+        <th>Other</th>
+        <th>None</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @symptoms.each do |symptom| %>
+      <tr>
+        <td><%= symptom.date.strftime('%b %e, %Y') %></td>
+        <td><% if symptom.fever == true %>
+          <i class="fa fa-check short-center" aria-hidden="true"></i>
+          <% end %>
+        </td>
+        <td><% if symptom.cough == true %>
+          <i class="fa fa-check short-center" aria-hidden="true"></i>
+          <% end %>
+        </td>
+        <td><% if symptom.diahrrea == true %>
+          <i class="fa fa-check long-center" aria-hidden="true"></i>
+          <% end %>
+        </td>
+        <td><%= symptom.other %></td>
+        <td><% if symptom.none == true %>
+          <i class="fa fa-check short-center" aria-hidden="true"></i>
+          <% end %>
+        </td>
+
+        <td>
+          <a href="/symptoms/<%= symptom.id %>" class="btn btn-primary">Show</a>
+          <a href="/symptoms/<%= symptom.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_symptom/<%= symptom.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

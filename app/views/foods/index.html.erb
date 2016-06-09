@@ -1,0 +1,71 @@
+<div class="page-header">
+  <% child = Child.find_by(:id => cookies[:child_id]) %>
+  <h1>
+    <%= child.name %>'s Nutrition
+  </h1>
+  <a href="/foods/new" class="btn btn-lg btn-success">New Daily Nutrition Entry</a>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Date</th>
+
+        <th>Fat</th>
+        <th>Dairy</th>
+        <th>Protein</th>
+        <th>Vegetable</th>
+        <th>Fruit</th>
+        <th>Grain</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.date.strftime('%b %e, %Y') %></td>
+        <td><%= food.fat %></td>
+        <td><%= food.dairy %></td>
+        <td><%= food.protein %></td>
+        <td><%= food.vegetable %></td>
+        <td><%= food.fruit %></td>
+        <td><%= food.grain %></td>
+        <td>
+          <a href="/foods/<%= food.id %>" class="btn btn-primary">Show</a>
+          <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+
+      <tr>
+        <td>
+          Average
+        </td>
+        <td>
+          avg fat
+        </td>
+        <td>
+          avg dairy
+        </td>
+        <td>
+          avg protein
+        </td>
+        <td>
+          avg vegetable
+        </td>
+        <td>
+          avg fruit
+        </td>
+        <td>
+          avg grain
+        </td>
+      </tr>
+
+
+
+
+    </table>
+  </div>
+</div>

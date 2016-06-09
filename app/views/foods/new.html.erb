@@ -1,0 +1,115 @@
+<!-- Validation failure messages -->
+<% if @food.errors.any? %>
+<% @food.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+
+<div class="page-header">
+  <% child = Child.find_by(:id => cookies[:child_id]) %>
+  <h3>Add a nutrition entry for <%= child.name %></h3>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_food" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Hidden input for child_id -->
+      <div class="form-group">
+        <input type="hidden" id="child_id" name="child_id" value="<%= child.id %>" class="form-control" value="<%= @food.child_id %>">
+      </div>
+
+
+      <!-- Label and input for date -->
+      <div class="form-group">
+        <label for="date" class="control-label">
+          Date
+        </label>
+      </div>
+
+      <div class='input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" name="date" id="date">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+
+
+      <!-- Label and input for fat -->
+      <div class="form-group">
+        <label for="fat" class="control-label">
+          Fat Servings
+        </label>
+
+        <%= select_tag "fat", options_for_select([ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ], "0") %>
+      </div>
+
+      <!-- Label and input for dairy -->
+      <div class="form-group">
+        <label for="dairy" class="control-label">
+          Dairy Servings
+        </label>
+
+        <%= select_tag "dairy", options_for_select([ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ], "0") %>
+      </div>
+
+      <!-- Label and input for protein -->
+      <div class="form-group">
+        <label for="protein" class="control-label">
+          Protein Servings
+        </label>
+
+        <%= select_tag "protein", options_for_select([ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ], "0") %>
+      </div>
+
+      <!-- Label and input for vegetable -->
+      <div class="form-group">
+        <label for="vegetable" class="control-label">
+          Vegetable Servings
+        </label>
+
+        <%= select_tag "vegetable", options_for_select([ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ], "0") %>
+      </div>
+
+      <!-- Label and input for fruit -->
+      <div class="form-group">
+        <label for="fruit" class="control-label">
+          Fruit Servings
+        </label>
+
+        <%= select_tag "fruit", options_for_select([ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ], "0") %>
+      </div>
+
+      <!-- Label and input for grain -->
+      <div class="form-group">
+        <label for="grain" class="control-label">
+          Grain Servings
+        </label>
+
+        <%= select_tag "grain", options_for_select([ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ], "0") %>
+
+      </div>
+      <div>
+        <button class="btn btn-success">
+          Create Nutrition Entry
+        </button>
+        or
+        <a href="/foods">Cancel</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+  $('#datetimepicker1').datetimepicker();
+});
+</script>
