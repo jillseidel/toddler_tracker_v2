@@ -9,6 +9,7 @@ class SymptomsController < ApplicationController
     @symptom = Symptom.find(params[:id])
   end
 
+
   def new
     @symptom = Symptom.new
   end
