@@ -56,12 +56,13 @@
             <form action="/switch_child">
               <%= select_tag(:child_id, options_from_collection_for_select(current_user.children, :id, :name, cookies[:child_id]), :class => "form-control") %><button>Submit</button>
             </li>
+            <li><a href="/children/new"> Add a Child</a></li>
           </form>
           <!-- <li><a href="/rails/info">Sitemap</a></li> -->
         </ul>
         <% else %>
 
-        <li><a href="/children">Children</a></li>
+        <li><a href="/children/new"> Add a Child</a></li>
       </ul>
       <% end %>
 

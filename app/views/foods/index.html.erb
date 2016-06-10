@@ -12,7 +12,6 @@
     <table class="table table-striped table-hover">
       <tr>
         <th>Date</th>
-
         <th>Fat</th>
         <th>Dairy</th>
         <th>Protein</th>
@@ -22,7 +21,7 @@
         <th>Actions</th>
       </tr>
 
-      <% @foods.each do |food| %>
+      <% child.foods.each do |food| %>
       <tr>
         <td><%= food.date.strftime('%b %e, %Y') %></td>
         <td><%= food.fat %></td>
@@ -44,7 +43,7 @@
           Average
         </td>
         <td>
-          avg fat
+          <%= @sum %>
         </td>
         <td>
           avg dairy

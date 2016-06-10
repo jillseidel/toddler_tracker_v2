@@ -91,10 +91,10 @@
     </div>
 
 
-     <script type="text/javascript">
-  $(function () {
-    $('#datetimepicker1').datetimepicker(
-      defaultDate: "<%= @sleep.date %>"
-    );
-  });
-</script>
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker1').datetimepicker({
+          defaultDate: "<%= @sleep.date.strftime("%m/%d/%y") %>"
+        });
+      });
+    </script>

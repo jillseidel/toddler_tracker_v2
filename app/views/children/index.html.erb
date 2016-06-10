@@ -1,4 +1,5 @@
 <div class="page-header">
+  <% child = Child.find_by(:id => cookies[:child_id]) %>
   <h1>
     Children
     <a href="/children/new" class="btn btn-lg btn-success">New Child</a>
@@ -9,19 +10,19 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>User</th>
+        <th>Name</th>
         <th>Gender</th>
         <th>Dob</th>
-        <th>Name</th>
+
         <th>Actions</th>
       </tr>
 
-      <% @children.each do |child| %>
+      <% current_user.children.each do |child| %>
       <tr>
-        <td><%= child.user_id %></td>
-        <td><%= child.gender %></td>
-        <td><%= child.dob %></td>
         <td><%= child.name %></td>
+        <td><%= child.gender %></td>
+        <td><%= child.dob.strftime('%b %e, %Y') %></td>
+
         <td>
           <a href="/children/<%= child.id %>" class="btn btn-primary">Show</a>
           <a href="/children/<%= child.id %>/edit" class="btn btn-warning">Edit</a>

@@ -18,7 +18,7 @@
         <th>Actions</th>
       </tr>
 
-      <% @sleeps.each do |sleep| %>
+      <% child.sleeps.each do |sleep| %>
       <tr>
         <td><%= sleep.date.strftime('%b %e, %Y') %></td>
         <td><%= sleep.naps %></td>

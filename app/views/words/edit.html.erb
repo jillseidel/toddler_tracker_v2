@@ -33,7 +33,7 @@
       </div>
 
       <div class='input-group date' id='datetimepicker1'>
-        <input type='text' class="form-control" name="date" id="date" setValue(<%= @word.date %>)>
+        <input type='text' class="form-control" name="date" id="date">
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-calendar"></span>
         </span>
@@ -80,7 +80,9 @@
 </div>
 
 <script type="text/javascript">
-$(function () {
-  $('#datetimepicker1').datetimepicker();
-});
+  $(function () {
+    $('#datetimepicker1').datetimepicker({
+      defaultDate: "<%= @word.date.strftime("%m/%d/%y") %>"
+    });
+  });
 </script>

@@ -20,7 +20,7 @@
         <th>Actions</th>
       </tr>
 
-      <% @symptoms.each do |symptom| %>
+      <% child.symptoms.each do |symptom| %>
       <tr>
         <td><%= symptom.date.strftime('%b %e, %Y') %></td>
         <td><% if symptom.fever == true %>

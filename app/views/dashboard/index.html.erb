@@ -1,6 +1,12 @@
+
+<% child = Child.find_by(:id => cookies[:child_id]) %>
+<% if child == nil %>
 <div class="page-header">
-  <% child = Child.find_by(:id => cookies[:child_id]) %>
-  <h1>
+  <h1>Select a child in the nav bar to begin</h1>
+</div>
+<% else %>
+<h1>
+  <div class="page-header">
     <%= child.name %>'s Dashboard
   </h1>
 </div>
@@ -9,27 +15,29 @@
   <div class="row">
     <!-- Box for Nutrition summary -->
     <div class="col-md-6">
-      <h3>Nutrition</h3>
+      <h3><a href="/foods">Nutrition</a></h3>
+      <a href="/foods">
       <%= pie_chart Food.group(:fat).count %>
+    </a>
       <%#= pie_chart {4=>3, 1=>2, 3=>4} %>
       <%= Food.group(:fat).count %>
     </div>
 
     <!-- Box for Vocabulary summary -->
     <div class="col-md-6">
-      <h3>Vocabulary</h3>
-      <dt>Number of words</dt>
-      <dd><%= child.words.count %></dd>
+      <h3><a href="/words">Vocabulary</a></h3>
+      <dt>Number of words: <%= child.words.count %></dt>
+      <a href="/words">
       <%= line_chart Word.group(:created_at).count %>
-
+    </a>
     </div>
   </div>
 
   <div class="row">
     <!-- Box for Wellness summary -->
     <div class="col-md-6">
-      <h3>Wellness</h3>
-
+      <h3><a href="/symptoms">Wellness</h3>
+      </a>
     </div>
 
     <!-- Box for Sleep summary -->
@@ -48,3 +56,5 @@
     </div>
   </div>
 </div>
+
+<% end %>
