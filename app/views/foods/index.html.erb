@@ -43,22 +43,22 @@
           <strong>Average</strong>
         </td>
         <td>
-          <strong><%= @fats.sum.to_f/@fats.count %></strong>
+          <strong><%= (@fats.sum.to_f/@fats.count).round(2) %></strong>
         </td>
         <td>
-          <strong><%= @dairy.sum.to_f/@dairy.count %></strong>
+          <strong><%= (@dairy.sum.to_f/@dairy.count).round(2) %></strong>
         </td>
         <td>
-          <strong><%= @protein.sum.to_f/@protein.count %></strong>
+          <strong><%= (@protein.sum.to_f/@protein.count).round(2) %></strong>
         </td>
         <td>
-          <strong><%= @vegetable.sum.to_f/@vegetable.count %></strong>
+          <strong><%= (@vegetable.sum.to_f/@vegetable.count).round(2) %></strong>
         </td>
         <td>
-          <strong><%= @fruit.sum.to_f/@fruit.count %></strong>
+          <strong><%= (@fruit.sum.to_f/@fruit.count).round(2) %></strong>
         </td>
         <td>
-          <strong><%= @grain.sum.to_f/@grain.count %></strong>
+          <strong><%= (@grain.sum.to_f/@grain.count).round(2) %></strong>
         </td>
       </tr>
 

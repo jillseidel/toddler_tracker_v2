@@ -20,7 +20,7 @@
       <h3><a href="/foods">Nutrition</h3>
         <% if @foods.count != 0 %>
         <h5>Average Daily Servings</h5>
-        <%= pie_chart({:fat=>@avg_fat, :dairy=>@avg_dairy, :protein=>@avg_protein, :vegetable=>@avg_vegetable, :fruit=>@avg_fruit, :grain=>@avg_grain}, height: "350px" )%>
+        <%= pie_chart({:fat=>@avg_fat, :dairy=>@avg_dairy, :protein=>@avg_protein, :vegetable=>@avg_vegetable, :fruit=>@avg_fruit, :grain=>@avg_grain}, height: "340px" )%>
       </a>
       <% else %>
       <form action="/foods/new">

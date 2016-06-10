@@ -38,16 +38,16 @@
           <strong>Average</strong>
         </td>
         <td>
-          <strong><%= @naps.sum.to_f/@naps.count %></strong>
+          <strong><%= (@naps.sum.to_f/@naps.count).round(2) %></strong>
         </td>
         <td>
-          <strong><%= @day_sleep.sum.to_f/@day_sleep.count %></strong>
+          <strong><%= (@day_sleep.sum.to_f/@day_sleep.count).round(2) %></strong>
         </td>
         <td>
-          <strong><%= @night_sleep.sum.to_f/@night_sleep.count %></strong>
+          <strong><%= (@night_sleep.sum.to_f/@night_sleep.count).round(2) %></strong>
         </td>
         <td>
-          <strong><%= @wake_ups.sum.to_f/@wake_ups.count %></strong>
+          <strong><%= (@wake_ups.sum.to_f/@wake_ups.count).round(2) %></strong>
         </td>
       </tr>
 
