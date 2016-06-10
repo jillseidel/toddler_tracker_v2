@@ -8,6 +8,8 @@ class FoodsController < ApplicationController
     @fruit = @foods.map{|x| x[:fruit]}
     @grain = @foods.map{|x| x[:grain]}
 
+    avg_fat = @fats.sum.to_f/@fats.count
+
   end
 
   def show
