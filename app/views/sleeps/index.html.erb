@@ -18,17 +18,17 @@
         <th>Actions</th>
       </tr>
 
-      <% child.sleeps.each do |sleep| %>
+      <% child.sleeps.each do |zzz| %>
       <tr>
-        <td><%= sleep.date.strftime('%b %e, %Y') %></td>
-        <td><%= sleep.naps %></td>
-        <td><%= sleep.wake_ups %></td>
-        <td><%= sleep.day_sleep %></td>
-        <td><%= sleep.night_sleep %></td>
+        <td><%= zzz.date.strftime('%b %e, %Y') %></td>
+        <td><%= zzz.naps %></td>
+        <td><%= zzz.wake_ups %></td>
+        <td><%= zzz.day_sleep %></td>
+        <td><%= zzz.night_sleep %></td>
         <td>
-          <a href="/sleeps/<%= sleep.id %>" class="btn btn-primary">Show</a>
-          <a href="/sleeps/<%= sleep.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_sleep/<%= sleep.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <a href="/sleeps/<%= zzz.id %>" class="btn btn-primary">Show</a>
+          <a href="/sleeps/<%= zzz.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_sleep/<%= zzz.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
       <% end %>

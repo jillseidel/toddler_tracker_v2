@@ -7,6 +7,7 @@ class SleepsController < ApplicationController
     @sleep = Sleep.find(params[:id])
   end
 
+
   def new
     @sleep = Sleep.new
   end

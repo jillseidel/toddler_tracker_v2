@@ -1,7 +1,7 @@
 class CreateSleeps < ActiveRecord::Migration
   def change
     create_table :sleeps do |t|
-      t.date :child_id
+      t.string :child_id
       t.date :date
       t.integer :naps
       t.integer :wake_ups
