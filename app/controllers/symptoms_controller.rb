@@ -2,7 +2,11 @@ class SymptomsController < ApplicationController
 
 
   def index
-    @symptoms = Symptom.all
+    @symptoms = Symptom.where(:child_id=>cookies[:child_id])
+    @fever = @symptoms.where(:fever=>true).count
+    @cough = @symptoms.where(:cough=>true).count
+    @diahrrea = @symptoms.where(:diahrrea=>true).count
+    @none = @symptoms.where(:none=>true).count
   end
 
   def show

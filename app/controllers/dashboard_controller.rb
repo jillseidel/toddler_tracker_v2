@@ -16,9 +16,14 @@ class DashboardController < ApplicationController
     @avg_fruit = @fruit.sum.to_f/@fruit.count
     @avg_grain = @grain.sum.to_f/@grain.count
 
+    @symptoms = Symptom.where(:child_id=>cookies[:child_id])
+    @fever = @symptoms.where(:fever=>true).count
+    @cough = @symptoms.where(:cough=>true).count
+    @diahrrea = @symptoms.where(:diahrrea=>true).count
+    @none = @symptoms.where(:none=>true).count
+
 
   @sleeps = Sleep.where(:child_id=>cookies[:child_id])
-  @symptoms = Symptom.where(:child_id=>cookies[:child_id])
   @words = Word.where(:child_id=>cookies[:child_id])
 
 
