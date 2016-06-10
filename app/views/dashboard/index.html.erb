@@ -17,10 +17,8 @@
     <div class="col-md-6">
       <h3><a href="/foods">Nutrition</a></h3>
       <a href="/foods">
-      <%= pie_chart Food.group(:fat).count %>
+      <%= pie_chart @foods.group(:fat).count %>
     </a>
-      <%#= pie_chart {4=>3, 1=>2, 3=>4} %>
-      <%= Food.group(:fat).count %>
     </div>
 
     <!-- Box for Vocabulary summary -->
@@ -28,7 +26,7 @@
       <h3><a href="/words">Vocabulary</a></h3>
       <dt>Number of words: <%= child.words.count %></dt>
       <a href="/words">
-      <%= line_chart Word.group(:created_at).count %>
+      <%= line_chart @words.group(:created_at).count %>
     </a>
     </div>
   </div>
@@ -45,7 +43,7 @@
       <h3> <a href="/sleeps">Sleep</h3>
         <div class="col-md-5">
           <h5>Nighttime Sleep</h5>
-          <%= pie_chart Sleep.group(:night_sleep).count %>
+          <%= pie_chart @sleeps.group(:night_sleep).count %>
         </div>
         <div class="col-md-5">
           <h5>Daytime Sleep</h5>
