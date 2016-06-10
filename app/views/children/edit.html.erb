@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Child #<%= @child.id %></h3>
+  <h3>Edit <%= @child.name %></h3>
 </div>
 
 <div class="row">
@@ -18,31 +18,9 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
+      <!-- Input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @child.user_id %>">
-      </div>
-
-      <!-- Label and input for gender -->
-      <div class="form-group">
-        <label for="gender" class="control-label">
-          Gender
-        </label>
-
-        <input type="text" id="gender" name="gender" placeholder="Gender" class="form-control" value="<%= @child.gender %>">
-      </div>
-
-      <!-- Label and input for dob -->
-      <div class="form-group">
-        <label for="dob" class="control-label">
-          Dob
-        </label>
-
-        <input type="text" id="dob" name="dob" placeholder="Dob" class="form-control" value="<%= @child.dob %>">
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @child.user_id %>">
       </div>
 
       <!-- Label and input for name -->
@@ -54,6 +32,31 @@
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @child.name %>">
       </div>
 
+      <!-- Label and input for gender -->
+      <div class="form-group">
+        <label for="gender" class="control-label">
+          Gender
+        </label>
+
+        <%= select_tag "gender", options_for_select([ "Male", "Female"], @child.gender) %>
+      </div>
+
+      <!-- Label and input for dob -->
+      <div class="form-group">
+        <label for="dob" class="control-label">
+          Date of Birth
+        </label>
+      </div>
+
+      <div class='input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" name="dob" id="dob">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+
+
+
       <button class="btn btn-warning">
         Update Child
       </button>
@@ -62,3 +65,11 @@
     </form>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker({
+      defaultDate: "<%= @child.dob.strftime("%m/%d/%y") %>"
+    });
+  });
+</script>
