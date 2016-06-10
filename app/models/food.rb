@@ -2,7 +2,7 @@ class Food < ActiveRecord::Base
 
   belongs_to :child
 
-  validates :date, presence: true
+  validates :date, presence: true, uniqueness: true
 
   validate :date_cannot_be_in_the_future
 
