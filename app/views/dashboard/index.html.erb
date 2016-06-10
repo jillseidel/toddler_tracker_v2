@@ -2,7 +2,9 @@
 <% child = Child.find_by(:id => cookies[:child_id]) %>
 <% if child == nil %>
 <div class="page-header">
-  <h1>Select a child in the nav bar to begin</h1>
+  <form action="/children/new">
+    <button class="btn btn-success">Add a child to begin</button>
+  </form>
 </div>
 <% else %>
 <h1>
@@ -16,21 +18,40 @@
     <!-- Box for Nutrition summary -->
     <div class="col-md-6">
       <h3><a href="/foods">Nutrition</h3>
-      <h5>Average Daily Servings</h5>
-      <%= pie_chart({:fat=>@avg_fat, :dairy=>@avg_dairy, :protein=>@avg_protein, :vegetable=>@avg_vegetable, :fruit=>@avg_fruit, :grain=>@avg_grain}, height: "350px" )%>
-    </a>
+        <% if @foods.count != 0 %>
+        <h5>Average Daily Servings</h5>
+        <%= pie_chart({:fat=>@avg_fat, :dairy=>@avg_dairy, :protein=>@avg_protein, :vegetable=>@avg_vegetable, :fruit=>@avg_fruit, :grain=>@avg_grain}, height: "350px" )%>
+      </a>
+      <% else %>
+      <form action="/foods/new">
+        <button class="btn btn-success">
+          Add a Nutrition Entry
+        </button>
+      </form>
+      <% end %>
+
     </div>
 
     <!-- Box for Vocabulary summary -->
     <div class="col-md-6">
       <h3><a href="/words">Vocabulary</a></h3>
+
+      <% if child.words.count != 0 %>
       <dt>Number of words: <%= child.words.count %></dt>
       <a href="/words">
-          <h5>Totals by Method</h5>
-      <%= bar_chart @words.group(:method).count, ytitle: "Words", width: "400px", height: "150px" %>
-      <h5>Totals by Proficiency</h5>
-      <%= bar_chart @words.group(:proficiency).count, ytitle: "Words", width: "400px", height: "150px"  %>
-    </a>
+        <h5>Totals by Method</h5>
+        <%= bar_chart @words.group(:method).count, ytitle: "Words", width: "400px", height: "150px" %>
+        <h5>Totals by Proficiency</h5>
+        <%= bar_chart @words.group(:proficiency).count, ytitle: "Words", width: "400px", height: "150px"  %>
+      </a>
+      <% else %>
+      <form action="/words/new">
+        <button class="btn btn-success">
+          Add a Word Entry
+        </button>
+      </form>
+      <% end %>
+
     </div>
   </div>
 
@@ -38,24 +59,41 @@
     <!-- Box for Wellness summary -->
     <div class="col-md-6">
       <h3><a href="/symptoms">Wellness</h3>
+        <% if @symptoms.count != 0 %>
         <h5>Most Common Symptoms</h5>
         <%= pie_chart({:fever=>@fever, :cough=>@cough, :diahrrea=>@diahrrea, :none=>@none}, height: "350px" )%>
+        <% else %>
+        <form action="/symptoms/new">
+          <button class="btn btn-success">
+            Add a Wellness Entry
+          </button>
+        </form>
+        <% end %>
+
       </a>
     </div>
 
     <!-- Box for Sleep summary -->
     <div class="col-md-6">
       <h3> <a href="/sleeps">Sleep</h3>
+        <% if @sleeps.count != 0 %>
         <div class="col-md-5">
           <h5>Nighttime Sleep</h5>
           <%= column_chart @sleeps.group(:night_sleep).count, xtitle: "Hours", ytitle: "Occurences" %>
         </div>
         <div class="col-md-5">
           <h5>Daytime Sleep</h5>
-          <%= column_chart Sleep.group(:day_sleep).count, xtitle: "Hours", ytitle: "Occurences" %>
-        </div>
+          <%= column_chart @sleeps.group(:day_sleep).count, xtitle: "Hours", ytitle: "Occurences" %>
+        </a>
+      </div>
+      <% else %>
+      <form action="/sleeps/new">
+        <button class="btn btn-success">
+          Add a Sleep Entry
+        </button>
+      </form>
+      <% end %>
 
-      </a>
     </div>
   </div>
 </div>

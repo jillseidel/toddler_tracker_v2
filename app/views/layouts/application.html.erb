@@ -38,6 +38,14 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
+
+
+      <% if current_user != nil %>
+
+
+      <!-- enter dropdown for child selection here -->
+      <% child = Child.find_by(:id => cookies[:child_id]) %>
+      <% if current_user.children !=nil %>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="/dashboard">Dashboard</a></li>
@@ -45,12 +53,6 @@
           <li><a href="/words">Vocabulary</a></li>
           <li><a href="/symptoms">Wellness</a></li>
           <li><a href="/sleeps">Sleep</a></li>
-
-          <% if current_user != nil %>
-
-
-          <!-- enter dropdown for child selection here -->
-
           <li>
             Show me
             <form action="/switch_child">
@@ -60,10 +62,10 @@
           </form>
           <!-- <li><a href="/rails/info">Sitemap</a></li> -->
         </ul>
+        <% end %>
+
         <% else %>
 
-        <li><a href="/children/new"> Add a Child</a></li>
-      </ul>
       <% end %>
 
 
