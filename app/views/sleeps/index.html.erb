@@ -3,7 +3,7 @@
   <h1>
     <%= child.name %>'s Sleep
   </h1>
-    <a href="/sleeps/new" class="btn btn-lg btn-success">New Sleep Entry</a>
+  <a href="/sleeps/new" class="btn btn-lg btn-success">New Sleep Entry</a>
 </div>
 
 <div class="row">
@@ -12,9 +12,9 @@
       <tr>
         <th>Date</th>
         <th>Naps</th>
-        <th>Wake ups</th>
         <th>Day sleep</th>
         <th>Night sleep</th>
+        <th>Wake ups</th>
         <th>Actions</th>
       </tr>
 
@@ -22,9 +22,9 @@
       <tr>
         <td><%= zzz.date.strftime('%b %e, %Y') %></td>
         <td><%= zzz.naps %></td>
-        <td><%= zzz.wake_ups %></td>
         <td><%= zzz.day_sleep %></td>
         <td><%= zzz.night_sleep %></td>
+        <td><%= zzz.wake_ups %></td>
         <td>
           <a href="/sleeps/<%= zzz.id %>" class="btn btn-primary">Show</a>
           <a href="/sleeps/<%= zzz.id %>/edit" class="btn btn-warning">Edit</a>
@@ -32,6 +32,25 @@
         </td>
       </tr>
       <% end %>
+
+      <tr>
+        <td>
+          <strong>Average</strong>
+        </td>
+        <td>
+          <strong><%= @naps.sum.to_f/@naps.count %></strong>
+        </td>
+        <td>
+          <strong><%= @day_sleep.sum.to_f/@day_sleep.count %></strong>
+        </td>
+        <td>
+          <strong><%= @night_sleep.sum.to_f/@night_sleep.count %></strong>
+        </td>
+        <td>
+          <strong><%= @wake_ups.sum.to_f/@wake_ups.count %></strong>
+        </td>
+      </tr>
+
     </table>
   </div>
 </div>

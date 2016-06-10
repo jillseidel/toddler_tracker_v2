@@ -12,12 +12,12 @@
     <table class="table table-striped table-hover">
       <tr>
         <th>Date</th>
-        <th>Fat</th>
-        <th>Dairy</th>
-        <th>Protein</th>
-        <th>Vegetable</th>
-        <th>Fruit</th>
-        <th>Grain</th>
+        <th>Fat Servings</th>
+        <th>Dairy Servings</th>
+        <th>Protein Servings</th>
+        <th>Vegetable Servings</th>
+        <th>Fruit Servings</th>
+        <th>Grain Servings</th>
         <th>Actions</th>
       </tr>
 
@@ -37,34 +37,35 @@
         </td>
       </tr>
       <% end %>
+    </tr>
 
       <tr>
         <td>
-          Average
+          <strong>Average</strong>
         </td>
         <td>
-          <%= @sum %>
+          <strong><%= @fats.sum.to_f/@fats.count %></strong>
         </td>
         <td>
-          avg dairy
+          <strong><%= @dairy.sum.to_f/@dairy.count %></strong>
         </td>
         <td>
-          avg protein
+          <strong><%= @protein.sum.to_f/@protein.count %></strong>
         </td>
         <td>
-          avg vegetable
+          <strong><%= @vegetable.sum.to_f/@vegetable.count %></strong>
         </td>
         <td>
-          avg fruit
+          <strong><%= @fruit.sum.to_f/@fruit.count %></strong>
         </td>
         <td>
-          avg grain
+          <strong><%= @grain.sum.to_f/@grain.count %></strong>
         </td>
       </tr>
 
 
 
 
-    </table>
-  </div>
+  </table>
+</div>
 </div>

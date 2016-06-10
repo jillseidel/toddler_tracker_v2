@@ -1,6 +1,10 @@
 class SleepsController < ApplicationController
   def index
-    @sleeps = Sleep.all
+    @sleeps = Sleep.where(:child_id=>cookies[:child_id])
+    @naps = @sleeps.map{|x| x[:naps]}
+    @day_sleep = @sleeps.map{|x| x[:day_sleep]}
+    @night_sleep = @sleeps.map{|x| x[:night_sleep]}
+    @wake_ups = @sleeps.map{|x| x[:wake_ups]}
   end
 
   def show

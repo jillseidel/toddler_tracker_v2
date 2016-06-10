@@ -1,6 +1,12 @@
 class FoodsController < ApplicationController
   def index
-    @foods = Food.all
+    @foods = Food.where(:child_id=>cookies[:child_id])
+    @fats = @foods.map{|x| x[:fat]}
+    @dairy = @foods.map{|x| x[:dairy]}
+    @protein = @foods.map{|x| x[:protein]}
+    @vegetable = @foods.map{|x| x[:vegetable]}
+    @fruit = @foods.map{|x| x[:fruit]}
+    @grain = @foods.map{|x| x[:grain]}
 
   end
 
